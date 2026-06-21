@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>hth · 持续关注</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f2f7f9;
+            color: #1c2e36;
+            line-height: 1.65;
+            padding: 24px 20px 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 1120px;
+            width: 100%;
+        }
+
+        /* 温和的装饰分隔 */
+        .sprinkle {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 28px 0 20px;
+            opacity: 0.3;
+        }
+        .sprinkle span {
+            width: 6px;
+            height: 6px;
+            background: #1d7e8c;
+            border-radius: 50%;
+        }
+
+        /* hero 开场 */
+        .hero {
+            padding: 28px 0 12px;
+            border-bottom: 1px solid #cde3e8;
+        }
+        .hero .prelude {
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+            color: #48747e;
+            margin-bottom: 4px;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            line-height: 1.2;
+            color: #0f3b44;
+            letter-spacing: -0.01em;
+        }
+        .hero h1 strong {
+            font-weight: 550;
+            color: #1a7f8c;
+        }
+        .hero .date-note {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: #5a7d86;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .hero .date-note i {
+            font-style: normal;
+            background: #d6edf2;
+            padding: 0 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: #1a5e69;
+        }
+
+        /* 承接段落 */
+        .context {
+            margin: 32px 0 28px;
+            padding: 0 2px;
+        }
+        .context p {
+            margin-bottom: 1.2em;
+            font-size: 1rem;
+            color: #1a313b;
+        }
+        .context .highlight {
+            background: linear-gradient(to right, #daf0f5, transparent);
+            padding: 0 6px 0 2px;
+            font-weight: 480;
+        }
+
+        /* 卡片网格 — 特点列表 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 40px 0 32px;
+        }
+        .feature-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 24px 22px 26px;
+            box-shadow: 0 4px 12px rgba(27, 90, 102, 0.06), 0 1px 3px rgba(0,0,0,0.02);
+            transition: box-shadow 0.2s, transform 0.15s;
+            border: 1px solid #dfedf1;
+        }
+        .feature-card:hover {
+            box-shadow: 0 8px 24px rgba(27, 100, 110, 0.08);
+            transform: translateY(-2px);
+            border-color: #b7d6de;
+        }
+        .feature-card .card-icon {
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+            display: inline-block;
+            background: #e5f3f7;
+            padding: 6px 10px 2px 10px;
+            border-radius: 40px;
+            color: #13626e;
+        }
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 530;
+            margin: 8px 0 6px;
+            color: #0d404b;
+            letter-spacing: 0.01em;
+        }
+        .feature-card p {
+            font-size: 0.92rem;
+            color: #31505a;
+            line-height: 1.55;
+        }
+        .feature-card p a {
+            color: #1a7f8c;
+            text-decoration: none;
+            font-weight: 480;
+            border-bottom: 1px dotted #98c3ce;
+        }
+        .feature-card p a:hover {
+            border-bottom: 1px solid #1a7f8c;
+        }
+
+        /* 场景/提示区域 — 温和结尾前 */
+        .scene-note {
+            background: #e6f2f6;
+            border-radius: 28px;
+            padding: 28px 28px 32px;
+            margin: 20px 0 36px;
+            border-left: 4px solid #1b8896;
+        }
+        .scene-note h2 {
+            font-weight: 480;
+            font-size: 1.25rem;
+            color: #0f4c58;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .scene-note h2 span {
+            background: #ffffffba;
+            padding: 0 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #1b6e7a;
+        }
+        .scene-note ul {
+            list-style: none;
+            padding: 0;
+        }
+        .scene-note li {
+            padding: 8px 0 8px 28px;
+            position: relative;
+            border-bottom: 1px solid #d2e4ea;
+            color: #1a3e48;
+            font-size: 0.95rem;
+        }
+        .scene-note li:last-child {
+            border-bottom: none;
+        }
+        .scene-note li::before {
+            content: "▹";
+            position: absolute;
+            left: 4px;
+            color: #1b8896;
+            font-weight: 500;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            margin: 28px 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 28px;
+            padding: 0 4px;
+        }
+        .faq-mini-item {
+            flex: 1 1 200px;
+            background: transparent;
+            padding: 4px 0;
+        }
+        .faq-mini-item dt {
+            font-weight: 510;
+            color: #0f505c;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+            letter-spacing: 0.02em;
+        }
+        .faq-mini-item dd {
+            font-size: 0.9rem;
+            color: #3c606b;
+            margin-left: 0;
+            line-height: 1.5;
+        }
+
+        /* 温和结尾 */
+        .closing {
+            padding: 28px 0 10px;
+            border-top: 1px solid #d6e6eb;
+            margin-top: 8px;
+        }
+        .closing p {
+            font-size: 0.98rem;
+            color: #24515d;
+            max-width: 700px;
+        }
+        .closing .return-thread {
+            display: inline-block;
+            background: #dceef3;
+            padding: 6px 18px 6px 16px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            margin-top: 14px;
+            color: #105c69;
+        }
+
+        /* 页脚极小 */
+        .footnote {
+            margin-top: 48px;
+            font-size: 0.75rem;
+            color: #7899a3;
+            border-top: 1px solid #d4e4e9;
+            padding-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 640px) {
+            body { padding: 16px 14px 32px; }
+            .hero h1 { font-size: 1.7rem; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .scene-note { padding: 20px 18px; }
+            .faq-mini { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 开场短句 -->
+    <div class="hero">
+        <div class="prelude">再次打开 · 熟悉如常</div>
+        <h1>回到 <strong>hth</strong> 的节奏中</h1>
+        <div class="date-note">
+            <i>持续关注</i> 页面结构依旧，内容持续更新
+        </div>
+    </div>
+
+    <!-- 承接段落 -->
+    <div class="context">
+        <p>
+            如果你曾访问过 <a href="https://pro-hthsports.com" style="color:#1a7f8c; text-decoration:none; font-weight:480; border-bottom:1px solid #98c3ce;">hth</a>，
+            大概记得那种干脆直接的信息排布。几个月后再回来，布局没有变得臃肿，模块之间的留白依然克制。
+            对于习惯定期查阅体育资讯与数据动态的人来说，这种稳定性本身就是一种信任锚点。
+        </p>
+        <p>
+            收藏夹里的链接如果很久没有点开，常常面临「页面已迁移」或「样式错乱」的扫兴。
+            而 <span class="highlight">hth 的页面从初次上线至今，保持着一贯的结构层级</span>，
+            同时在不打扰老用户的前提下优化加载与可读性。这也让我们愿意把它放在书签栏靠前的位置。
+        </p>
+    </div>
+
+    <!-- 特点列表：卡片网格 -->
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="card-icon">📋</div>
+            <h3>信息密度适中</h3>
+            <p>每个模块承载明确功能，不堆砌 banner 与弹窗。从赛事摘要到数据面板，滚动节奏由你掌控。</p>
+        </div>
+        <div class="feature-card">
+            <div class="card-icon">🔖</div>
+            <h3>收藏即用 · 长期有效</h3>
+            <p>链接结构稳定，目录清晰。<a href="https://pro-hthsports.com">hth</a> 的子页面路径没有频繁变动，
+            适合存入收藏夹长期回访，不必反复核对地址。</p>
+        </div>
+        <div class="feature-card">
+            <div class="card-icon">🔄</div>
+            <h3>更新可预测</h3>
+            <p>内容迭代以增量为主，不突然推翻原有分类。如果你隔几周再次打开，仍能按习惯找到核心区域。</p>
+        </div>
+        <div class="feature-card">
+            <div class="card-icon">📱</div>
+            <h3>移动端友好</h3>
+            <p>卡片布局与字体大小针对手机屏幕调整，横竖屏切换不丢布局。通勤时快速浏览毫无压力。</p>
+        </div>
+    </div>
+
+    <!-- 场景提示 · 关于持续关注 -->
+    <div class="scene-note">
+        <h2>📌 持续关注的三个场景 <span>回访者视角</span></h2>
+        <ul>
+            <li><strong>每周例行查看</strong> —— 赛事表格与近期动态置于首屏，无需二次跳转即可获得概览。</li>
+            <li><strong>跨设备同步</strong> —— 同一链接在笔记本与手机上呈现一致的内容权重，收藏夹一处保存即可。</li>
+            <li><strong>信息回溯</strong> —— 历史文章与数据页面保留原始结构，方便对比不同阶段的变化。</li>
+        </ul>
+        <div style="margin-top:16px; font-size:0.9rem; color:#1d5b66; background:#ffffff90; padding:8px 16px; border-radius:30px; display:inline-block;">
+            ⚡ 下次回来，依然认得路。
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <dl class="faq-mini">
+        <div class="faq-mini-item">
+            <dt>页面还会继续调整吗？</dt>
+            <dd>会，但以优化阅读与载入为主，不会改变主要导航逻辑。收藏的链接长期可用。</dd>
+        </div>
+        <div class="faq-mini-item">
+            <dt>如何快速定位之前看过的内容？</dt>
+            <dd>使用站内分类标签或直接搜索关键词。建议把常用页面加入书签。</dd>
+        </div>
+        <div class="faq-mini-item">
+            <dt>移动端与桌面端内容是否一致？</dt>
+            <dd>核心信息完全相同，仅排版根据屏幕宽度自适应，无隐藏模块。</dd>
+        </div>
+    </dl>
+
+    <!-- 温和结尾 -->
+    <div class="closing">
+        <p>
+            无论你是初次注意到这个站点，还是已经将 <a href="https://pro-hthsports.com" style="color:#1a7f8c; text-decoration:none; font-weight:480; border-bottom:1px solid #98c3ce;">hth</a> 
+            放在收藏夹深处，这里都保持着你上次离开时的轮廓，同时又更新了一些细节。
+            不需要重新适应，只需要继续往下看。
+        </p>
+        <div class="return-thread">
+            ← 回到你熟悉的信息流
+        </div>
+    </div>
+
+    <!-- 占位装饰线 -->
+    <div class="sprinkle">
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- 脚注 -->
+    <div class="footnote">
+        <span>hth · 持续关注</span>
+        <span>页面结构稳定 · 2025</span>
+    </div>
+
+</div>
+</body>
+</html>
